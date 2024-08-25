@@ -23,13 +23,29 @@ function selectionSort(arr) {
 //Best Case: O(n): 이미 정렬이 되어있는 경우
 //버블 정렬은 최악의 경우에 O(n^2)의 시간 복잡도를 가진다. 왜냐하면 각 자리를 찾기 위해서 n번의 순회를 해야하며 n번의 회전 동안에 요소의 개수만큼 또 순회를 해야하기 때문이다. 그러나 이미 정렬이 되어있는 경우에는 한 번의 순회로 정렬 여부를 알 수 있다.
 
-function bubbleSort() {
+function bubbleSort(arr) {
   for (let i = arr.length - 1; i > 0; i--) {
     for (let j = 0; j < i; j++) {
       if (arr[j] > arr[j + 1]) {
         let temp = arr[j];
         arr[j] = arr[j + 1];
         arr[j + 1] = temp;
+      }
+    }
+  }
+}
+
+//삽입 정렬 : 각 원소를 적절한 위치에 삽입하는 정렬 기법, 각 단계에서 현재의 원소가 삽입될 위치를 찾고 적절한 위치에 도달할 때까지 반복적으로 왼쪽으로 이동한다.시간 복잡도 O(N^2)으로 비효율적인 정렬 알고리즘중 하나
+//삽입 정렬은 버블정렬과 선택정렬과 비교했을때 보통 상대적으로 효율적으로 동작한다.(배열의 상태에 따라서 다름)
+function insertionSort(arr) {
+  for (let i = 1; i < arr.length; i++) {
+    for (let j = i; j > 0; j--) {
+      if (arr[j] < arr[j - 1]) {
+        let temp = arr[j];
+        arr[j] = arr[j - 1];
+        arr[j - 1] = temp;
+      } else {
+        break;
       }
     }
   }
