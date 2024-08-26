@@ -50,3 +50,44 @@ function insertionSort(arr) {
     }
   }
 }
+
+//병합 정렬 : 분할 정복 알고리즘, 일반적으로 재귀함수를 이용하여 구현(오버헤드로 이어진다)
+//시간 복잡도 O(NlogN)을 보장하여 빠른 정렬 알고리즘이다.
+//장점 : 최악의 경우에도 O(NlogN)를 보장 할 수 있다는 점에서 효율적
+//단점 : 일반적인 경우 정복 과정에서 임시 배열이 필요하다.
+
+//병합 수행 함수
+function merge(arr, left, mid, right) {
+  let i = left;
+  let j = mid + 1;
+  let k = left; //결과배열 인덱스
+  while (i <= mid && j <= right) {
+    if (arr[i] <= arr[j]) {
+      sorted[k++] = arr[i++];
+    } else {
+      sorted[k++] = arr[j++];
+    }
+  }
+  if (i > mid) {
+    for (; j <= right; j++) {
+      sorted[k++] = arr[j];
+    }
+  } else {
+    for (; i <= right; i++) {
+      sorted[k++] = arr[i];
+    }
+  }
+
+  for (let x = left; x <= right; x++) {
+    arr[x] = sorted[x];
+  }
+}
+//병합 정렬 함수
+function megeSort(arr, left, right) {
+  if (left < right) {
+    let mid = parseInt((left + right) / 2);
+    mergeSort(arr, left, mid);
+    mergeSort(arr, mid + 1, right);
+    merge(arr, left, mid, right);
+  }
+}
